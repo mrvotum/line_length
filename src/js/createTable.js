@@ -1,4 +1,6 @@
-import {counterLetterArr, counterNumberArr, counterSymbolArr} from './counterArrs';
+/* eslint-disable max-len */
+/* eslint-disable no-unused-expressions */
+import { counterNumberArr, counterSymbolArr } from './counterArrs';
 
 export default class createTable {
   constructor(counterArr) {
@@ -17,7 +19,7 @@ export default class createTable {
       const rowBoldEl = document.createElement('div');
       rowBoldEl.className = 'rowBold';
 
-      this.createBoldRow(rowBoldEl);   
+      this.createBoldRow(rowBoldEl);
     }
   }
 
@@ -41,49 +43,49 @@ export default class createTable {
   }
 
   createBoldRow(rowBoldEl) {
-    for (let i = 1; i < 3; i++) {
+    for (let i = 1; i < 3; i += 1) {
       this.createRow(rowBoldEl, i);
     }
-    
+
     this.rowFrom += 11;
     this.rowTo += 11;
   }
 
   createBoldRowNumber(rowBoldEl, arr) {
-    for (let i = 1; i < 3; i++) {
+    for (let i = 1; i < 3; i += 1) {
       this.createRowNumber(rowBoldEl, i, arr);
     }
-    
+
     this.rowFrom += 11;
     this.rowTo += 11;
   }
 
   createBoldRowSymbol(tableEl, arr) {
-    for (let i = 1; i < 3; i++) {
+    for (let i = 1; i < 3; i += 1) {
       this.createRowSymbol(tableEl, i, arr);
     }
-    
+
     this.rowFrom += 11;
     this.rowTo += 2;
   }
 
   createRow(rowBoldEl, rowCount) {
     const rowEl = document.createElement('div');
-    const hooks = ['',''];
+    const hooks = ['', ''];
     let k = null;
 
-    if (rowCount & 1) {
-      //нечётный, первая строка
+    if (rowCount % 2) {
+      // нечётный, первая строка
       rowEl.className = 'row letter';
       k = 0;
     } else {
-      rowEl.className = 'row'
+      rowEl.className = 'row';
       k = 2;
       hooks[0] = '(';
       hooks[1] = ')';
     }
 
-    for (let i = this.rowFrom; i < this.rowTo; i++) {
+    for (let i = this.rowFrom; i < this.rowTo; i += 1) {
       const cellEl = document.createElement('div');
       cellEl.className = 'cell';
       cellEl.innerHTML = `${this.counterArr[i][k]}${hooks[0]}${this.counterArr[i][k + 1]}${hooks[1]}`;
@@ -92,23 +94,23 @@ export default class createTable {
     }
     rowBoldEl.appendChild(rowEl);
 
-    (rowCount & 1) ? this.lettersTable.appendChild(rowBoldEl) : this.lettersTable.appendChild(rowBoldEl);
+    (rowCount % 2) ? this.lettersTable.appendChild(rowBoldEl) : this.lettersTable.appendChild(rowBoldEl);
   }
 
   createRowNumber(rowBoldEl, rowCount, arr) {
     const rowEl = document.createElement('div');
     let k = null;
 
-    if (rowCount & 1) {
-      //нечётный, первая строка
+    if (rowCount % 2) {
+      // нечётный, первая строка
       rowEl.className = 'row letter';
       k = 0;
     } else {
-      rowEl.className = 'row'
+      rowEl.className = 'row';
       k = 1;
     }
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i += 1) {
       const cellEl = document.createElement('div');
       cellEl.className = 'cell';
       cellEl.innerHTML = `${arr[i][k]}`;
@@ -117,23 +119,23 @@ export default class createTable {
     }
     rowBoldEl.appendChild(rowEl);
 
-    (rowCount & 1) ? this.lettersTable.appendChild(rowBoldEl) : this.lettersTable.appendChild(rowBoldEl);
+    (rowCount % 2) ? this.lettersTable.appendChild(rowBoldEl) : this.lettersTable.appendChild(rowBoldEl);
   }
 
   createRowSymbol(tableEl, rowCount, arr) {
     const rowEl = document.createElement('tr');
     let k = null;
 
-    if (rowCount & 1) {
-      //нечётный, первая строка
+    if (rowCount % 2) {
+      // нечётный, первая строка
       rowEl.className = 'boldRow';
       k = 1;
     } else {
-      rowEl.className = 'tableRow'
+      rowEl.className = 'tableRow';
       k = 2;
     }
 
-    for (let i = this.rowFrom; i < this.rowTo; i++) {
+    for (let i = this.rowFrom; i < this.rowTo; i += 1) {
       const cellEl = document.createElement('td');
       cellEl.className = 'tableCell';
       cellEl.innerHTML = `${arr[i][k]}`;
@@ -142,7 +144,7 @@ export default class createTable {
     }
     tableEl.appendChild(rowEl);
 
-    (rowCount & 1) ? this.lettersTable.appendChild(tableEl) : this.lettersTable.appendChild(tableEl);
+    (rowCount % 2) ? this.lettersTable.appendChild(tableEl) : this.lettersTable.appendChild(tableEl);
   }
 
   addEventListeners() {
@@ -154,8 +156,8 @@ export default class createTable {
       while (this.rowTo <= this.counterArr.length) {
         const rowBoldEl = document.createElement('div');
         rowBoldEl.className = 'rowBold';
-  
-        this.createBoldRow(rowBoldEl);   
+
+        this.createBoldRow(rowBoldEl);
       }
     });
 
@@ -164,26 +166,26 @@ export default class createTable {
       const rowBoldEl = document.createElement('div');
       rowBoldEl.className = 'rowBold';
 
-      this.createBoldRowNumber(rowBoldEl, counterNumberArr);   
+      this.createBoldRowNumber(rowBoldEl, counterNumberArr);
     });
 
     this.symbolBtn.addEventListener('click', () => {
       this.clearTable();
       this.rowFrom = 0;
       this.rowTo = 11;
-      
+
       while (this.rowTo <= counterSymbolArr.length) {
         const tableEl = document.createElement('table');
         tableEl.className = 'symbolsTable';
-  
-        this.createBoldRowSymbol(tableEl, counterSymbolArr);   
+
+        this.createBoldRowSymbol(tableEl, counterSymbolArr);
       }
     });
   }
-  
+
   clearTable() {
     const childCount = this.lettersTable.childElementCount;
-    for (let i = 0; i < childCount; i++) {
+    for (let i = 0; i < childCount; i += 1) {
       this.lettersTable.firstElementChild.remove();
     }
   }

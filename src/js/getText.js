@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable consistent-return */
 import Counter from './counter';
 
 export default class GetText {
@@ -9,11 +11,11 @@ export default class GetText {
   }
 
   create() {
-    if ( ! (window.File && window.FileReader && window.FileList && window.Blob)) {
-      alert('The File APIs are not fully supported in this browser.');
+    if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
+      console.error('The File APIs are not fully supported in this browser.');
     }
 
-    this.addEventListener(); 
+    this.addEventListener();
   }
 
   addEventListener() {
@@ -25,7 +27,7 @@ export default class GetText {
   handleFileSelect(evt) {
     const inputFile = evt.target.files[0];
     if (!inputFile.type.match('text.*')) {
-      return alert(inputFile.name + " is not a valid text file.");
+      return alert(`${inputFile.name} is not a valid text file.`);
     }
     const reader = new FileReader();
     reader.readAsText(inputFile);
