@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-expressions */
 import { counterNumberArr, counterSymbolArr } from './counterArrs';
+import Formulas from './formulas';
 
 export default class createTable {
-  constructor(counterArr) {
+  constructor(counterArr, textArr) {
     this.counterArr = counterArr;
+    this.textArr = textArr;
     this.lettersTable = document.querySelector('[data-id=lettersTable]');
     this.rowFrom = 0; // строка от 0 до 11
     this.rowTo = 11;
@@ -21,6 +23,9 @@ export default class createTable {
 
       this.createBoldRow(rowBoldEl);
     }
+
+    const formulas = new Formulas(this.textArr);
+    formulas.create();
   }
 
   createButtons() {

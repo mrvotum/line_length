@@ -5,9 +5,6 @@ import Counter from './counter';
 export default class GetText {
   constructor(inputFile) {
     this.inputFile = inputFile;
-    // this.letterBtn = document.querySelector('[data-id=letterBtn]');
-    // this.symbolBtn = document.querySelector('[data-id=symbolBtn]');
-    // this.numberBtn = document.querySelector('[data-id=numberBtn]');
   }
 
   create() {

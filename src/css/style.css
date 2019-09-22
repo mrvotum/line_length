@@ -220,6 +220,23 @@ select[multiple]
 	background-color: rgb(172, 172, 172);	
 }
 
+.btnSmall {
+	background-color: rgb(209, 209, 209);
+	border-radius: 10px;
+	color: #fff;
+	font-weight: 400;
+	font-size: 18px;
+	text-decoration: none;
+	padding: 10px 20px;
+}
+.btnSmall:hover {
+	cursor: pointer;
+	background-color: rgb(172, 172, 172);	
+}
+.active {
+	background-color: rgb(141, 141, 141);
+}
+
 .symbolsTable {
 	width: 100%;
 	border-collapse: collapse;

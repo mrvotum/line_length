@@ -32,7 +32,7 @@ export default class Counter {
       }
     }
 
-    new CreateTable(counterLetterArr).create();
+    new CreateTable(counterLetterArr, this.textArr).create();
     this.counterRR.textContent = `Всего символов: ${this.textArr.length}`;
   }
 }
