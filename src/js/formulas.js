@@ -1,4 +1,9 @@
-import { counterLetterArr, counterNumberArr, counterSymbolArr, fullSymbolsArr } from './counterArrs';
+import {
+  counterLetterArr,
+  counterNumberArr,
+  counterSymbolArr,
+  fullSymbolsArr,
+} from './counterArrs';
 
 export default class Formulas {
   constructor(textArr) {
@@ -16,8 +21,9 @@ export default class Formulas {
     this.btnsContainer.innerHTML = `
     <br>
     <span>рассчёт по</span>
-    <a href="#" class="btnSmall" data-id="formulasA">Вариант А</a>
-    <a href="#" class="btnSmall" data-id="formulasB">Вариант Б</a>`;
+    <a href="#" class="btnSmall" data-id="formulasA">Вариант A</a>
+    <a href="#" class="btnSmall" data-id="formulasB">Вариант B</a>
+    <a href="#" class="btnSmall" data-id="formulasC">Вариант C</a>`;
 
     this.addListeners();
   }
@@ -25,10 +31,12 @@ export default class Formulas {
   addListeners() {
     this.formulasA = document.querySelector('[data-id=formulasA]');
     this.formulasB = document.querySelector('[data-id=formulasB]');
+    this.formulasC = document.querySelector('[data-id=formulasC]');
 
     this.formulasA.addEventListener('click', () => {
       this.formulasA.classList.add('active');
       this.formulasB.classList.remove('active');
+      this.formulasC.classList.remove('active');
       this.clearVariables();
 
       for (let i = 0; i < counterNumberArr.length; i += 1) {
@@ -71,6 +79,7 @@ export default class Formulas {
     this.formulasB.addEventListener('click', () => {
       this.formulasB.classList.add('active');
       this.formulasA.classList.remove('active');
+      this.formulasC.classList.remove('active');
       this.clearVariables();
 
       // перебор каждой буквы в тексте
@@ -96,15 +105,35 @@ export default class Formulas {
         this.paragraphLength += this.paragraphsLength[i];
       }
 
-      // this.linesInParagraphCount = this.paragraphLength
-      // ОСТАНОВИЛСЯ ТУТ! Нужно теперь искать каждую строку отдельно, без средних значений...
+      console.log(`${this.paragraphLength}`);
+      // 117mm - это длина строки
+      this.linesInParagraphCount = Math.floor(this.paragraphLength / 117);
+      console.log(`число строк в тексте ${this.linesInParagraphCount}`);
+
+      this.linesInText = this.linesInParagraphCount * this.paragraphsLength.length;
+
+      this.linesCount = Math.ceil(160 / (12 * 0.3528));
+      this.pagesCount = Math.ceil(this.linesInParagraphCount / this.linesCount);
 
       this.container.innerHTML = `
       _________________________________________
       <p>считаем с учётом абзацного отступа (10мм)</p>
-      <p>it was a linebrake: ${this.paragraphCount} times</p>
+      <p>Обры строки: ${this.paragraphCount}</p>
       <p>Кол-во абзацев: ${this.paragraphsLength.length}</p>
-      <p>Длина абзацев всех целиком: ${this.paragraphLength}</p>`;
+      <p>Длина абзацев всех целиком: ${this.paragraphLength}</p>
+      <p>Число строк в тексте ${this.linesInParagraphCount}</p>
+      <p>Число страниц в книге: ${this.pagesCount}</p>`;
+    });
+
+    this.formulasC.addEventListener('click', () => {
+      this.formulasA.classList.remove('active');
+      this.formulasB.classList.remove('active');
+      this.formulasC.classList.add('active');
+      this.clearVariables();
+
+      this.container.innerHTML = `
+      _________________________________________
+      <p>Вариант С</p>`;
     });
   }
 
@@ -121,5 +150,6 @@ export default class Formulas {
     this.paragraphsLength = []; // длина абзацев
     this.paragraphLength = 0; // длина абзаца
     this.linesInParagraphCount = null; // кол-во строк в абзаце
+    this.linesInText = null; // кол-во строк в тексте
   }
 }

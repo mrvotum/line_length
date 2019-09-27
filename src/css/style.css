@@ -187,15 +187,7 @@ select[multiple]
 }
 
 .fontStyle {
-  font-family: '20 Kopeek Book';
-}
-
-@font-face{
   font-family: '20_Kopeek';
-  font-weight: normal;
-  font-style: normal;
-
-  src: url('../fonts/20_Kopeek/20Kopeek-Black.otf') format('truetype');
 }
 
 .header {
@@ -237,6 +229,10 @@ select[multiple]
 	background-color: rgb(141, 141, 141);
 }
 
+.table {
+	font-family: "20_Kopeek";
+}
+
 .symbolsTable {
 	width: 100%;
 	border-collapse: collapse;
@@ -253,4 +249,12 @@ select[multiple]
 
 .tableCell {
 	border: 1px solid #000;
+}
+
+@font-face{
+  font-family: '20_Kopeek';
+  font-weight: normal;
+  font-style: normal;
+
+  src: url('../fonts/20_Kopeek/20Kopeek-Book.otf') format('truetype');
 }
