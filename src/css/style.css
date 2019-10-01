@@ -258,3 +258,26 @@ select[multiple]
 
   src: url('../fonts/20_Kopeek/20Kopeek-Book.otf') format('truetype');
 }
+
+
+
+.content {
+	width: 442px; /* 117мм */
+	margin: 0 auto;
+	text-align: justify;
+}
+
+.hyphens {
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+}
+
+.textPart {
+	text-indent: 38px; /* Отступ первой строки 10mm */
+	display: block;
+	font-family: '20_Kopeek';
+	font-size: 10pt;
+	line-height: 12pt;
+}

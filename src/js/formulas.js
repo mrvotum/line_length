@@ -131,9 +131,30 @@ export default class Formulas {
       this.formulasC.classList.add('active');
       this.clearVariables();
 
-      this.container.innerHTML = `
-      _________________________________________
-      <p>Вариант С</p>`;
+      const contentEl = document.createElement('div'); // тут текст поделённый на абзацы
+      contentEl.classList = 'content hyphens';
+
+      let bigTextArr = '';
+
+      for (let i = 0; i < this.simbolsCount; i += 1) {
+        const element = this.textArr[i];
+        // находим красную строку
+        if (element !== fullSymbolsArr[89][0] && i !== this.simbolsCount - 1) {
+          bigTextArr += element;
+        } else {
+          const spanEl = document.createElement('span');
+          spanEl.classList = 'textPart';
+          spanEl.textContent = bigTextArr;
+
+          contentEl.appendChild(spanEl);
+          bigTextArr = '';
+        }
+      }
+
+      this.container.appendChild(contentEl); // текст сюда
+
+      console.log(`Высота блока с текстом: ${this.container.offsetHeight}`);
+      console.log(`Страниц: ${this.container.offsetHeight / 605}`);
     });
   }
 
