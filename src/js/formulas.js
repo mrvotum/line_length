@@ -151,10 +151,14 @@ export default class Formulas {
         }
       }
 
-      this.container.appendChild(contentEl); // текст сюда
+      this.textContainer = document.querySelector('[data-id=formulas]');
+      this.textContainer.appendChild(contentEl); // текст сюда
 
-      console.log(`Высота блока с текстом: ${this.container.offsetHeight}`);
-      console.log(`Страниц: ${this.container.offsetHeight / 605}`);
+      this.pagesCount = Math.ceil(this.container.offsetHeight / 605); // округлить до целых вверх
+
+      this.container.innerHTML = `
+      <p>Вариант С</p>
+      <p>Страниц в книге: ${this.pagesCount}</p>`;
     });
   }
 
