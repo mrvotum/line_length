@@ -153,8 +153,12 @@ export default class Formulas {
 
       this.textContainer = document.querySelector('[data-id=formulas]');
       this.textContainer.appendChild(contentEl); // текст сюда
+      // console.log(contentEl);
 
-      this.pagesCount = Math.ceil(this.container.offsetHeight / 605); // округлить до целых вверх
+      // document.querySelector('[data-id=testFor]').appendChild(contentEl);
+
+      this.pagesCount = Math.ceil(this.container.offsetHeight / 609);
+      // округлить до целых вверх (605 по умолчанию)
 
       this.container.innerHTML = `
       <p>Вариант С</p>

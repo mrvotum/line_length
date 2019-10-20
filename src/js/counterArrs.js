@@ -160,5 +160,8 @@ const fullSymbolsArr = [
 ];
 
 export {
-  counterLetterArr, counterNumberArr, counterSymbolArr, fullSymbolsArr,
+  counterLetterArr,
+  counterNumberArr,
+  counterSymbolArr,
+  fullSymbolsArr,
 };

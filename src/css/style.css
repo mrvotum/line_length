@@ -262,9 +262,11 @@ select[multiple]
 
 
 .content {
-	width: 442px; /* 117мм */
+	width: 435px; /* 117мм */
 	margin: 0 auto;
 	text-align: justify;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 .hyphens {
@@ -272,6 +274,7 @@ select[multiple]
 	-moz-hyphens: auto;
 	-ms-hyphens: auto;
 	hyphens: auto;
+	-ms-hyphenate-limit-lines: 3;
 }
 
 .textPart {
@@ -280,4 +283,8 @@ select[multiple]
 	font-family: '20_Kopeek';
 	font-size: 10pt;
 	line-height: 12pt;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	/* letter-spacing: 0.2pt; */
 }
